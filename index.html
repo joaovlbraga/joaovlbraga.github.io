@@ -250,8 +250,8 @@
         .contact-methods { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; position: relative; }
         .contact-card {
             background: var(--bg-surface-hover); border: 1px solid var(--border-color); border-radius: 12px;
-            padding: 20px; display: flex; align-items: center; gap: 14px; text-decoration: none;
-            color: var(--text-primary); transition: var(--transition); text-align: left;
+            padding: 20px; display: flex; align-items: flex-start; gap: 14px; text-decoration: none;
+            color: var(--text-primary); transition: var(--transition); text-align: left; min-width: 0;
         }
         .contact-card:hover { border-color: var(--accent-primary); transform: translateY(-3px); }
         .contact-card.whatsapp:hover { border-color: var(--accent-whatsapp); }
@@ -261,9 +261,16 @@
         }
         .contact-card.whatsapp .contact-icon { background: rgba(37,211,102,0.12); color: var(--accent-whatsapp); }
         .contact-icon svg { width: 20px; height: 20px; }
+        .contact-text { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
         .contact-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
-        .contact-value { font-size: 0.95rem; font-weight: 500; }
-        .copy-hint { font-size: 0.7rem; color: var(--accent-primary); opacity: 0; transition: opacity 0.2s; margin-left: auto; font-family: var(--font-mono); }
+        .contact-value {
+            font-size: 0.95rem; font-weight: 500; overflow-wrap: anywhere; word-break: break-word; line-height: 1.4;
+        }
+        .contact-card#emailCard .contact-value { font-size: 0.85rem; }
+        .copy-hint {
+            font-size: 0.68rem; color: var(--accent-primary); opacity: 0; transition: opacity 0.2s;
+            font-family: var(--font-mono); margin-top: 2px; display: inline-block;
+        }
         .contact-card.copied .copy-hint { opacity: 1; }
 
         footer { border-top: 1px solid var(--border-color); padding: 40px 0; text-align: center; }
@@ -558,8 +565,8 @@
                         <span class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.25.85 5.8 2.4a8.2 8.2 0 0 1 2.42 5.84c0 4.55-3.7 8.25-8.25 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.55 3.71-8.25 8.27-8.25zm-4.5 4.32c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.02s.87 2.35.99 2.51c.12.16 1.69 2.72 4.19 3.71 2.07.82 2.49.66 2.94.62.45-.04 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.45-.28-.24-.12-1.45-.71-1.67-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18a7.24 7.24 0 0 1-1.34-1.66c-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.41-.55-.42a10 10 0 0 0-.51-.01z"/></svg>
                         </span>
-                        <span>
-                            <span class="contact-label">WhatsApp</span><br>
+                        <span class="contact-text">
+                            <span class="contact-label">WhatsApp</span>
                             <span class="contact-value">(12) 99669-3368</span>
                         </span>
                     </a>
@@ -568,19 +575,19 @@
                         <span class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                         </span>
-                        <span>
-                            <span class="contact-label">E-mail</span><br>
+                        <span class="contact-text">
+                            <span class="contact-label">E-mail</span>
                             <span class="contact-value">joaovitorlimabraga@gmail.com</span>
+                            <span class="copy-hint">copiado!</span>
                         </span>
-                        <span class="copy-hint">copiado!</span>
                     </a>
 
                     <a href="tel:+5512996693368" class="contact-card">
                         <span class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
                         </span>
-                        <span>
-                            <span class="contact-label">Telefone</span><br>
+                        <span class="contact-text">
+                            <span class="contact-label">Telefone</span>
                             <span class="contact-value">(12) 99669-3368</span>
                         </span>
                     </a>
@@ -589,8 +596,8 @@
                         <span class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         </span>
-                        <span>
-                            <span class="contact-label">Localização</span><br>
+                        <span class="contact-text">
+                            <span class="contact-label">Localização</span>
                             <span class="contact-value">Cruzeiro / SP</span>
                         </span>
                     </span>
